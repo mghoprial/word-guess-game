@@ -11,35 +11,80 @@
 <body>
 <div id= "game">
     <h1>The Psychic Game</h1>
-    <p> Guess what letter I'm thinking of <br>
-
-        wins:
-         <br>
-        losses: 
+    <div> Guess what letter I'm thinking of <br>
+        <span id="wins"></span>
         <br>
-        guesses left:
-         <br>
-        your guesses so far: 
+        <span id="losses"></span>
         <br>
-    </p>
+        <span id="remaining"></span>
+        <br>
+        <span id="picked"></span>
+    </div>
 </div>
 
     <script type="text/javascript">
     
-    var computerChoice = ["a" , "b" , "c" , "d" , "e" , "f" , "g" , "h" , "i" , "j" , "k" , "l" , "m" , "n" , "o" , "p" , "q" , "r" , "s" , "t" , "u" , "v" , "w" , "x" , "y" , "z"]
+    var options = ["a", "b" , "c" , "d" , "e" , "f" , "g" , "h" , "i" , "j" , "k" , "l" , "m" , "n" , "o" , "p" , "q" , "r" , "s" , "t" , "u" , "v" , "w" , "x" , "y" , "z"]
+    var computerpick = options[Math.floor(Math.random() * options.length)];
+    console.log ('computer pick', computerpick);
 
+    //this is how link in Javascript
+    var displayWins = document.getElementById("wins")
+    var displayLosses = document.getElementById("losses")
+    var displayRemaining = document.getElementById("remaining")
+    var displayPicked = document.getElementById("picked")
+    
     var wins = 0;
-    var loses = 0;
-    var numberOfGuesses = 9;
-    var guessesSofar = [];
+    var losses = 0;
+    var remainingGuesses = 9;
+    var picked = [];
 
     document.onkeyup = function (event){
 
-        var user= event.key();
-        
+        var userPicked = event.key;
+       // console.log (userPicked);
 
+        
+        
+        // if userpicked does not equal computer choice
+        if (userPicked !== computerpick) {
+            // increase losses and decrease remainingGuesses
+            remainingGuesses --;
+
+            picked.push(userPicked);
+         //console.log (picked);
+
+            if (remainingGuesses <= 0) {
+                alert ( "YOU LOSE" ) ;
+            losses ++;
+            
+            
+            }
+        } else { 
+            wins ++;
+            
+            alert ( "YOU WIN!!" );
+            
+        // increase wins
+    }
+   
+    
+    
+    displayPicked.innerText = "You Picked: [" + picked + " ]";
+    displayWins.innerText = "Total Wins " + wins; 
+    displayLosses.innerText = "Total Losses " + losses;
+    displayRemaining.innerText = "Remaining Guesses " + remainingGuesses;
+        
+        
+        
     }
 
 
-</body>
+
+   
+    
+
+</script>
+
+    </body>
 </html>

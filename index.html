@@ -33,6 +33,7 @@
     var displayLosses = document.getElementById("losses")
     var displayRemaining = document.getElementById("remaining")
     var displayPicked = document.getElementById("picked")
+ 
     
     var wins = 0;
     var losses = 0;
@@ -41,8 +42,8 @@
 
     document.onkeyup = function (event){
 
-        var userPicked = event.key;
-       // console.log (userPicked);
+        var userPicked = event.key.toLowerCase();
+      
 
         
         
@@ -57,28 +58,27 @@
             if (remainingGuesses <= 0) {
                 alert ( "YOU LOSE" ) ;
             losses ++;
-            
-            
+            computerpick = options[Math.floor(Math.random() * options.length)];
+                remainingGuesses = 9;
+            picked = [];
             }
         } else { 
             wins ++;
-            
             alert ( "YOU WIN!!" );
-            
-        // increase wins
+            computerpick= options[Math.floor(Math.random() * options.length)];
+            remainingGuesses = 9;
+            picked = []; 
+          // increase wins
     }
-   
+  
     
     
     displayPicked.innerText = "You Picked: [" + picked + " ]";
     displayWins.innerText = "Total Wins " + wins; 
     displayLosses.innerText = "Total Losses " + losses;
     displayRemaining.innerText = "Remaining Guesses " + remainingGuesses;
-        
-        
-        
+              
     }
-
 
 
    

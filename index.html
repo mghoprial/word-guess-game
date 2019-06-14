@@ -53,21 +53,25 @@
             remainingGuesses --;
 
             picked.push(userPicked);
-         //console.log (picked);
+         console.log (picked);
 
             if (remainingGuesses <= 0) {
                 alert ( "YOU LOSE" ) ;
             losses ++;
             computerpick = options[Math.floor(Math.random() * options.length)];
-                remainingGuesses = 9;
             picked = [];
+            remainingGuesses = 9;
+            console.log ('computer pick', computerpick);
+
             }
         } else { 
             wins ++;
             alert ( "YOU WIN!!" );
             computerpick= options[Math.floor(Math.random() * options.length)];
-            remainingGuesses = 9;
             picked = []; 
+            remainingGuesses = 9;
+            console.log ('computer pick', computerpick);
+            
           // increase wins
     }
   

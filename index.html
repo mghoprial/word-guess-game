@@ -1,94 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Psychcic Game</title>
-   
+
 
 </head>
+
 <body>
-<div id= "game">
-    <h1>The Psychic Game</h1>
-    <div> Guess what letter I'm thinking of <br>
-        <span id="wins"></span>
-        <br>
-        <span id="losses"></span>
-        <br>
-        <span id="remaining"></span>
-        <br>
-        <span id="picked"></span>
+    <div id="game">
+        <h1>The Psychic Game</h1>
+        <div> Guess what letter I'm thinking of <br>
+            <span id="wins"></span>
+            <br>
+            <span id="losses"></span>
+            <br>
+            <span id="remaining"></span>
+            <br>
+            <span id="picked"></span>
+        </div>
     </div>
-</div>
 
     <script type="text/javascript">
-    
-    var options = ["a", "b" , "c" , "d" , "e" , "f" , "g" , "h" , "i" , "j" , "k" , "l" , "m" , "n" , "o" , "p" , "q" , "r" , "s" , "t" , "u" , "v" , "w" , "x" , "y" , "z"]
-    var computerpick = options[Math.floor(Math.random() * options.length)];
-    console.log ('computer pick', computerpick);
 
-    //this is how link in Javascript
-    var displayWins = document.getElementById("wins")
-    var displayLosses = document.getElementById("losses")
-    var displayRemaining = document.getElementById("remaining")
-    var displayPicked = document.getElementById("picked")
- 
-    
-    var wins = 0;
-    var losses = 0;
-    var remainingGuesses = 9;
-    var picked = [];
+        var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        var computerpick = options[Math.floor(Math.random() * options.length)];
+        console.log('computer pick', computerpick);
 
-    document.onkeyup = function (event){
+        //this is how to link in Javascript
+        var displayWins = document.getElementById("wins")
+        var displayLosses = document.getElementById("losses")
+        var displayRemaining = document.getElementById("remaining")
+        var displayPicked = document.getElementById("picked")
 
-        var userPicked = event.key.toLowerCase();
-      
 
-        
-        
-        // if userpicked does not equal computer choice
-        if (userPicked !== computerpick) {
-            // increase losses and decrease remainingGuesses
-            remainingGuesses --;
+        var wins = 0;
+        var losses = 0;
+        var remainingGuesses = 9;
+        var picked = [];
 
-            picked.push(userPicked);
-         console.log (picked);
+        document.onkeyup = function (event) {
 
-            if (remainingGuesses <= 0) {
-                alert ( "YOU LOSE" ) ;
-            losses ++;
-            computerpick = options[Math.floor(Math.random() * options.length)];
-            picked = [];
-            remainingGuesses = 9;
-            console.log ('computer pick', computerpick);
+            var userPicked = event.key.toLowerCase();
+
+
+
+
+            // if userpicked does not equal computer choice
+            if (userPicked !== computerpick) {
+                // increase losses and decrease remainingGuesses
+                remainingGuesses--;
+                if(picked.indexOf(userPicked) === -1) {
+                    picked.push(userPicked);
+                }
+                console.log(picked);
+
+                if (remainingGuesses <= 0) {
+                    alert("YOU LOSE");
+                    losses++;
+                    computerpick = options[Math.floor(Math.random() * options.length)];
+                    picked = [];
+                    remainingGuesses = 9;
+                    console.log('computer pick', computerpick);
+
+                }
+            } else {
+                // increase wins
+                wins++;
+                alert("YOU WIN!!");
+                computerpick = options[Math.floor(Math.random() * options.length)];
+                picked = [];
+                remainingGuesses = 9;
+                console.log('computer pick', computerpick);
+
 
             }
-        } else { 
-            wins ++;
-            alert ( "YOU WIN!!" );
-            computerpick= options[Math.floor(Math.random() * options.length)];
-            picked = []; 
-            remainingGuesses = 9;
-            console.log ('computer pick', computerpick);
-            
-          // increase wins
-    }
-  
-    
-    
-    displayPicked.innerText = "You Picked: [" + picked + " ]";
-    displayWins.innerText = "Total Wins " + wins; 
-    displayLosses.innerText = "Total Losses " + losses;
-    displayRemaining.innerText = "Remaining Guesses " + remainingGuesses;
-              
-    }
 
 
-   
-    
 
-</script>
+            displayPicked.innerText = "You Picked: [" + picked + " ]";
+            displayWins.innerText = "Total Wins " + wins;
+            displayLosses.innerText = "Total Losses " + losses;
+            displayRemaining.innerText = "Remaining Guesses " + remainingGuesses;
 
-    </body>
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
 </html>
